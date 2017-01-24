@@ -43,32 +43,47 @@ describe('Routes: Roles', () => {
   });
 
   describe('GET /roles', () => {
-    it('should return a list of roles', done => {
-      request
-      .get('/api/roles')
-      .set('Authorization', `JWT ${token}`)
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end((err, res) => {
-
-        // it( 'should be valid array', () => {
-        //   expect(res.body).to.not.be.null;
-        //   expect(res.body).to.not.be.undefined;
-        //   expect(res.body).to.not.be.empty;
-        // });
-
-        // it( 'should be a admin role.', () => {
-        //   expect(res.body[0]).to.be.an('object');
-        //   expect(res.body[0].name).to.eql(adminRole.name);
-        // });
-
-        // it( 'should be a admin role.', () => {
-        //   expect(res.req._headers.authorization).to.eql(`JWT ${token}`);
-        //   expect(res.req._headers.authorization).to.have.string(token);
-        // });
-        
-        done(err);
+    describe('should return a list of roles', done => {
+      it( 'should be valid array', done => {
+        request
+        .get('/api/roles')
+        .set('Authorization', `JWT ${token}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body).to.not.be.null;
+          expect(res.body).to.not.be.undefined;
+          expect(res.body).to.not.be.empty;
+          done(err);
+        });
       });
+
+      it('should be a admin role', done => {
+        request
+        .get('/api/roles')
+        .set('Authorization', `JWT ${token}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.body[0]).to.be.an('object');
+          expect(res.body[0].name).to.eql(adminRole.name);
+          done(err);
+        });
+      });
+
+      it( 'should be a admin role', done => {
+        request
+        .get('/api/roles')
+        .set('Authorization', `JWT ${token}`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+          expect(res.req._headers.authorization).to.eql(`JWT ${token}`);
+          expect(res.req._headers.authorization).to.have.string(token);
+          done(err);
+        });
+      });
+
     });
   });
 
