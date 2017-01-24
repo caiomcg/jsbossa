@@ -9,9 +9,12 @@
   "scripts": {
     "preinstall": "npm install -g bower",
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test mocha specs/**/*.js"
+    "test": "NODE_ENV=test mocha --opts specs/mocha.opts specs/**/*.js"
   },
   "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.22.2",
+    "babel-preset-es2015": "^6.22.0",
     "bcryptjs": "^2.3.0",
     "bluebird": "^3.4.1",
     "body-parser": "~1.13.2",
